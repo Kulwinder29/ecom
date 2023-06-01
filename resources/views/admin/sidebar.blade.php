@@ -22,8 +22,9 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
       defer
     ></script>
-    <script src="./assets/js/charts-lines.js" defer></script>
-    <script src="./assets/js/charts-pie.js" defer></script>
+    <script src="{{asset('admin/assets/js/charts-lines.js')}}" defer></script>
+    <script src="{{asset('admin/assets/js/charts-pie.js')}}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     @vite('resources/css/app.css')
   </head>
   <body>

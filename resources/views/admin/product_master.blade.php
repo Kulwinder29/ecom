@@ -40,20 +40,17 @@
                             <span class="text-gray-700 dark:text-gray-400">CATEGORY</span>
                             <select id="category" name="category_id"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="1">cat</option>
-                                <option value="2">BLACK</option>
-                                <option value="3">BLUE</option>
-                                <option value="4">YELLOW</option>
+                                <option value="">Select</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div style="margin:1rem 0;" class="w-full">
+                        <div style="margin:1rem 0;" class="w-full" id="subcategory">
                             <span class="text-gray-700 dark:text-gray-400">SUB CATEGORY</span>
                             <select name="sub_category_id"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                 <option value="sub">sub</option>
-                                <option>BLACK</option>
-                                <option>BLUE</option>
-                                <option>YELLOW</option>
                             </select>
                         </div>
                     </div>
@@ -130,4 +127,33 @@
             </div>
         </form>
     </main>
+
+    <script>
+        $(document).ready(function() {
+            $('#category').change(function() {
+                let c_id = $(this).val();
+                $.ajax({
+                    url: "{{ route('getCategory') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        c_id: c_id
+                    },
+                    success: function(response) {
+                        var html = '<select name="sub_category_id"
+                        class ="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" > ';
+                        response.forEach((element, key) => {
+                            console.log(element.name);
+                            html += "<option value='" + element.id + "'>" + element.name + "</option>";
+                        });
+                        html += '</select>';
+                        $('#subcategory').replaceWith(html);
+                    },
+                })
+            })
+        })
+    </script>
 @endsection

@@ -52,13 +52,15 @@ Route::prefix('admin')->group(function () {
     Route::post('/category-add',[CategoryController::class , 'store'])->name('category.store');
     Route::view('/product-master', 'admin.product_master');
     Route::post('/product-master',[AdminController::class,'product_insert'])->name('product.insert');
+    Route::get('/product-master',[AdminController::class,'category'])->name('category');
+    
 
 
     Route::get('/test',function(){
         return view('admin.tables');
     });
 });
-
+Route::post('/getCategory',[AdminController::class,'getCategory'])->name('getCategory');
 
 
 
