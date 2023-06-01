@@ -46,9 +46,9 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div style="margin:1rem 0;" class="w-full" id="subcategory">
+                        <div style="margin:1rem 0;" class="w-full" >
                             <span class="text-gray-700 dark:text-gray-400">SUB CATEGORY</span>
-                            <select name="sub_category_id"
+                            <select name="sub_category_id" id="subcategory"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                 <option value="sub">sub</option>
                             </select>
@@ -143,13 +143,24 @@
                         c_id: c_id
                     },
                     success: function(response) {
-                        var html = '<select name="sub_category_id"
-                        class ="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" > ';
+                        //  var html = '<option value="">sub</option>';
                         response.forEach((element, key) => {
                             console.log(element.name);
-                            html += "<option value='" + element.id + "'>" + element.name + "</option>";
+                            // html += '<select name="sub_category_id" id="subcategory" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                
+                                $("select"+"#subcategory").append("<option>" + element.name + "</option>");
+                            // </select>';
+                            // html += "<option value='" + element.id + "'>" + element.name + "</option>";
                         });
-                        html += '</select>';
+                        
+                        // html += '</select>';
+                        // var html = '<select name="sub_category_id"
+                        // class ="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" > ';
+                        // response.forEach((element, key) => {
+                        //     console.log(element.name);
+                        //     html += "<option value='" + element.id + "'>" + element.name + "</option>";
+                        // });
+                        // html += '</select>';
                         $('#subcategory').replaceWith(html);
                     },
                 })
