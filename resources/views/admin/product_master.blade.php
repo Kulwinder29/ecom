@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="block text-sm">
+                <div class="block text-sm" id="add_section">
                     <br>
                     <span class="text-gray-700 dark:text-gray-400">Product Attribute</span>
                     <div class="flex justify-between">
@@ -93,13 +93,13 @@
                         </div>
                         <div style="margin:1rem 0;">
                             <span class="text-gray-700 dark:text-gray-400">MORE</span>
-                            <button type="button"
+                            <button type="button" id="add_more"
                                 class="block w-full mt-1 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded bg-purple-400 ">ADD
                                 MORE</button>
                         </div>
                         <div style="margin:1rem 0;">
                             <span class="text-gray-700 dark:text-gray-400">REMOVE</span>
-                            <button type="button"
+                            <button type="button" id="remove"
                                 class="block w-full mt-1 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded bg-purple-400">REMOVE</button>
                         </div>
 
@@ -147,6 +147,18 @@
                     },
                 })
             })
+            $('#add_more').click(function() {
+                // alert('add');
+
+                let html =
+                    '<div class="flex justify-between"><div style="margin:1rem 0;"><span class="text-gray-700 dark:text-gray-400">MRP</span><input name="mrp[]" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple placeholder="MRP" type="number"></div><div style="margin:1rem 0;"><span class="text-gray-700 dark:text-gray-400">PRICE</span><input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="PRICE" type="number"></div><div style="margin:1rem 0;"><span class="text-gray-700 dark:text-gray-400">COLOR</span><select name="color[]" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"><option value="red">Select Color</option> @foreach ($colors as $color)<option value="{{ $color->id }}">{{ $color->color }}</option> @endforeach </select></div><div style="margin:1rem 0;"><span class="text-gray-700 dark:text-gray-400">SIZE</span><select name="size[]" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"><option value="s">Select Size</option> @foreach ($size as $size_list) <option value="{{ $size_list->id }}">{{ $size_list->size }}</option> @endforeach </select></div><div style="margin:1rem 0;"></div><div style="margin:1rem 0;"><span class="text-gray-700 dark:text-gray-400">REMOVE</span><button type="button" id="remove" class="block w-full mt-1 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded bg-purple-400">REMOVE</button></div></div>';
+
+                $("#add_section").append(html);
+            });
+            $('#remove').click(function() {
+                // alert('remove');
+                $("#add_section").empty();
+            });
         })
     </script>
 @endsection
