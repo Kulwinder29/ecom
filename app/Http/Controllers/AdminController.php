@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AdminModel;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\ColorMaster;
+use App\Models\SizeMaster;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -15,13 +17,15 @@ class AdminController extends Controller
         print_r($request->all());
     }
 
-    public function category()
+    public function read_data()
     {
+       $colors = ColorMaster::all();
+       $size = SizeMaster::all();
         $categories = Category::where([
             ['status', '1'],
             ['category_id', null]
         ])->get();
-        return view('admin.product_master', compact('categories'));
+        return view('admin.product_master', compact('categories','colors','size'));
     }
 
     public function getCategory(Request $request)
@@ -35,4 +39,31 @@ class AdminController extends Controller
         }
          echo $html;
     }
+
+    public function color_index ()
+    {
+        return view('admin.color-master');
+    }
+
+    public function color_create (Request $request)
+    {
+        $colors = new ColorMaster();
+        $colors->color = $request['color'];
+        $colors->save();
+           return redirect()->route('color.master');
+    }
+
+    public function size_index ()
+    {
+        return view('admin.size-master');
+    }
+    public function size_create (Request $request)
+    {
+        $size = new SizeMaster();
+        $size->size = $request['size'];
+        $size->save();
+        return redirect()->route('size.master');
+    }
+
+
 }

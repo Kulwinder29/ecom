@@ -46,7 +46,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div style="margin:1rem 0;" class="w-full" >
+                        <div style="margin:1rem 0;" class="w-full">
                             <span class="text-gray-700 dark:text-gray-400">SUB CATEGORY</span>
                             <select name="sub_category_id" id="subcategory"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
@@ -75,20 +75,20 @@
                             <span class="text-gray-700 dark:text-gray-400">COLOR</span>
                             <select name="color[]"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="red">RED</option>
-                                <option>BLACK</option>
-                                <option>BLUE</option>
-                                <option>YELLOW</option>
+                                <option value="red">Select Color</option>
+                                @foreach ($colors as $color)
+                                    <option value="{{ $color->id }}">{{ $color->color }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div style="margin:1rem 0;">
                             <span class="text-gray-700 dark:text-gray-400">SIZE</span>
                             <select name="size[]"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="s">S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
+                                <option value="s">Select Size</option>
+                                @foreach ($size as $size_list)
+                                    <option value="{{ $size_list->id }}">{{ $size_list->size }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div style="margin:1rem 0;">
@@ -142,7 +142,7 @@
                         c_id: c_id
                     },
                     success: function(response) {
-                        $('#subcategory').html(response) ;
+                        $('#subcategory').html(response);
                         // console.log(response);
                     },
                 })

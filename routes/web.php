@@ -23,15 +23,15 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/',[HomeController::class , 'index']);
-Route::get('/about',[AboutController::class , 'index']);
-Route::get('/blog',[BlogController::class , 'index']);
-Route::get('/blog-detail',[BlogDetailController::class , 'index']);
-Route::get('/contact',[ContactController::class , 'index']);
-Route::get('/product',[productController::class , 'index']);
-Route::get('/product-detail',[productDetailController::class , 'index']);
-Route::get('/shoping-cart',[ShoppingCartController::class , 'index']);
-Route::get('/home-02',function(){
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/blog-detail', [BlogDetailController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
+Route::get('/product', [productController::class, 'index']);
+Route::get('/product-detail', [productDetailController::class, 'index']);
+Route::get('/shoping-cart', [ShoppingCartController::class, 'index']);
+Route::get('/home-02', function () {
     return view('home-02');
 });
 
@@ -47,20 +47,24 @@ Route::prefix('admin')->group(function () {
     Route::get('/deshboard', function () {
         return view('admin.index');
     });
-    Route::get('/categories',[CategoryController::class , 'index'])->name('category.list');
-    Route::get('/category-add',[CategoryController::class , 'create'])->name('category.add');
-    Route::post('/category-add',[CategoryController::class , 'store'])->name('category.store');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.list');
+    Route::get('/category-add', [CategoryController::class, 'create'])->name('category.add');
+    Route::post('/category-add', [CategoryController::class, 'store'])->name('category.store');
     Route::view('/product-master', 'admin.product_master');
-    Route::post('/product-master',[AdminController::class,'product_insert'])->name('product.insert');
-    Route::get('/product-master',[AdminController::class,'category'])->name('category');
-    
+    Route::post('/product-master', [AdminController::class, 'product_insert'])->name('product.insert');
+    Route::get('/product-master', [AdminController::class, 'read_data']); //->name('category');
+    Route::get('/color-master', [AdminController::class, 'color_index'])->name('color.master');
+    Route::post('/color-master', [AdminController::class, 'color_create'])->name('color.craete');
+    Route::get('/size-master', [AdminController::class, 'size_index'])->name('size.master');
+    Route::post('/size-master', [AdminController::class, 'size_create'])->name('size.craete');
 
 
-    Route::get('/test',function(){
+
+    Route::get('/test', function () {
         return view('admin.tables');
     });
 });
-Route::post('/getCategory',[AdminController::class,'getCategory'])->name('getCategory');
+Route::post('/getCategory', [AdminController::class, 'getCategory'])->name('getCategory');
 
 
 

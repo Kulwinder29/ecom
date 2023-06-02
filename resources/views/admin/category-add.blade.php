@@ -1,10 +1,14 @@
 @extends('admin.main')
 @section('container')
+<div style="padding:1rem;" class="border-b">
+  <h2 class="text-purple-600">Category Master</h2>
+</div>
+
 <form action="{{route('category.store')}}" method="post">
     @csrf
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <label class="block text-sm">
-      <span class="text-purple-600">Category Name</span>
+      <span class="text-gray-700 dark:text-gray-400">Category Name</span>
       <input name="name" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Category Add">
     </label>
 </div>
