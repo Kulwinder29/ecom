@@ -40,7 +40,7 @@
                             <span class="text-gray-700 dark:text-gray-400">CATEGORY</span>
                             <select id="category" name="category_id"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="">Select</option>
+                                <option value="0">Select Category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -50,7 +50,7 @@
                             <span class="text-gray-700 dark:text-gray-400">SUB CATEGORY</span>
                             <select name="sub_category_id" id="subcategory"
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="sub">sub</option>
+                                <option value="">Select Sub Category</option>
                             </select>
                         </div>
                     </div>
@@ -138,30 +138,12 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     type: 'post',
-                    dataType: 'json',
                     data: {
                         c_id: c_id
                     },
                     success: function(response) {
-                        //  var html = '<option value="">sub</option>';
-                        response.forEach((element, key) => {
-                            console.log(element.name);
-                            // html += '<select name="sub_category_id" id="subcategory" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                
-                                $("select"+"#subcategory").append("<option>" + element.name + "</option>");
-                            // </select>';
-                            // html += "<option value='" + element.id + "'>" + element.name + "</option>";
-                        });
-                        
-                        // html += '</select>';
-                        // var html = '<select name="sub_category_id"
-                        // class ="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" > ';
-                        // response.forEach((element, key) => {
-                        //     console.log(element.name);
-                        //     html += "<option value='" + element.id + "'>" + element.name + "</option>";
-                        // });
-                        // html += '</select>';
-                        $('#subcategory').replaceWith(html);
+                        $('#subcategory').html(response) ;
+                        // console.log(response);
                     },
                 })
             })

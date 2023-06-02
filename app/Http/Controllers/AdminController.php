@@ -28,11 +28,11 @@ class AdminController extends Controller
     {
         $c_id = $request->get('c_id');
         $subCategory = DB::table('categories')->where('category_id', $c_id)->get();
-           echo $subCategory ;
-        // $html = '<option value="">sub</option>';
-        // foreach ($subCategory as $list) {
-        //     $html .= '<option value="' . $list->id . '">' . $list->name . '</option>';
-        // }
-        // echo $html;
+        //    echo $subCategory ;
+         $html = '<option value="0">Select Sub Category</option>';
+         foreach ($subCategory as $list) {
+         $html .= '<option value="' . $list->id . '">' . $list->name . '</option>';
+        }
+         echo $html;
     }
 }
